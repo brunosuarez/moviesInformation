@@ -1,0 +1,54 @@
+<div class="text-center">
+    <h2>Pesquise um filme abaixo e saiba mais informações sobre a obra:</h2>
+
+    <div class="navbar navbar-expand-lg bg-body-tertiary justify-content-center">
+        <form class="d-flex custom-search-form" role="search">
+            <input class="form-control mr-2" type="text" placeholder="Digite o nome de um filme"
+                (keyup)="getMovie($event)">
+            <button class="btn btn-primary ml-2" type="button" (click)="toggleFavorites()">
+                {{ showFavorites ? 'Todos' : 'Favoritos' }}
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="movie-container">
+    <div *ngFor="let movie of getMoviesToDisplay()" class="movie-card">
+        <div class="poster">
+            <img *ngIf="movie.Poster !== 'N/A'" [src]="movie.Poster" [alt]="movie.Title" />
+            <div class="no-poster" *ngIf="movie.Poster === 'N/A'">Imagem não disponível</div>
+        </div>
+        <div class="details">
+            <h2>
+                <strong>{{ movie.Title }}</strong>&nbsp;
+                <span class="ml-2" data-toggle="tooltip" data-placement="top" [title]="getTooltipText(movie)">
+                    <i class="bi bi-heart-fill custom-icon" [ngClass]="{ 'favorite': isFavorite(movie) }"
+                        (click)="addToFavorites(movie)"></i>
+                </span>
+            </h2>
+            <h3>
+                <strong>Elenco:</strong>
+            </h3>
+            <ul>
+                <i>
+                    <li *ngFor="let actor of movie.Actors">{{ actor }}</li>
+                </i>
+            </ul>
+            <div *ngIf="movie.Ratings && movie.Ratings.length > 0" class="ratings">
+                <h3>
+                    <strong>Avaliações:</strong>
+                </h3>
+                <ul>
+                    <li *ngFor="let rating of movie.Ratings">
+                        <strong>{{ rating.Source }}:</strong> {{ rating.Value }}
+                    </li>
+                </ul>
+            </div>
+
+            <h3>
+                <strong>Sinopse:</strong>
+            </h3>
+            <p>{{ movie.Plot }}</p>
+        </div>
+    </div>
+</div>
