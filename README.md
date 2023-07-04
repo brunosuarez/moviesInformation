@@ -1,8 +1,6 @@
 # moviesInformation
 
-Portanto, esse código basicamente controla a exibição do rodapé com base na rolagem da página. Quando o usuário rolar a página até o final do documento, o valor de showFooter será definido como true, indicando que o rodapé deve ser exibido.
-
-Aplicação para consultar informações sobre filmes construída em Angular, utilizando Bootstrap como componente de Design E SCSS.
+Aplicação para consultar informações sobre filmes construída em Angular, utilizando Bootstrap como componente de Design e SCSS.
 
 Para executar o projeto é necessário ir até o diretório: movies_information e executar o comando: ```ng serve```
 
